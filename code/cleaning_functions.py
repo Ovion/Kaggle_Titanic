@@ -37,8 +37,8 @@ def courtesy(value):
         r"Dr\.": "Dr",
         r"Rev\.": "Rev",
         r"Col\.": "Col",
-        r"Capt\.": "Capt",
-        r"Major\.": "Major"
+        # r"Capt\.": "Capt",
+        # r"Major\.": "Major"
     }
     for k, v in court.items():
         if re.search(k, value):
@@ -84,6 +84,7 @@ def last_clean_dummy(df,):
     Esta función recibe un df para aplicar los últimos cambios y hacer un dummies de ['Sex', 'Embarked', 'Court'].
     '''
     df.Embarked.fillna('S', inplace=True)
+    df.Fare.fillna(35.63, inplace=True)
     df.drop(['Name', 'Ticket', 'Cabin'], axis=1, inplace=True)
     dummy = pd.get_dummies(data=df, columns=['Sex', 'Embarked', 'Court'])
     return dummy
